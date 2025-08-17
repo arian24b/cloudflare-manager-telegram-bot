@@ -6,8 +6,7 @@ from datetime import datetime
 import cloudflare
 from sqlalchemy import Column, DateTime, Integer, String, Text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import (
     Application,
@@ -2462,8 +2461,7 @@ class CloudflareDNSBot:
             reply_markup = InlineKeyboardMarkup(keyboard)
 
             await query.edit_message_text(
-                "✅ *Tunnel Deleted Successfully!*\n\n"
-                "The tunnel and all its configurations have been removed.",
+                "✅ *Tunnel Deleted Successfully!*\n\nThe tunnel and all its configurations have been removed.",
                 parse_mode="Markdown",
                 reply_markup=reply_markup,
             )
@@ -2610,6 +2608,7 @@ class CloudflareDNSBot:
             fallbacks=[
                 MessageHandler(filters.Regex("^/cancel$"), self.cancel_conversation),
             ],
+            per_message=False,
         )
 
         # Conversation handler for adding DNS records
@@ -2652,6 +2651,7 @@ class CloudflareDNSBot:
             fallbacks=[
                 MessageHandler(filters.Regex("^/cancel$"), self.cancel_conversation),
             ],
+            per_message=False,
         )
 
         # Conversation handler for creating tunnels
@@ -2673,6 +2673,7 @@ class CloudflareDNSBot:
             fallbacks=[
                 MessageHandler(filters.Regex("^/cancel$"), self.cancel_conversation),
             ],
+            per_message=False,
         )
 
         # Conversation handler for adding hostnames to tunnels
@@ -2700,6 +2701,7 @@ class CloudflareDNSBot:
             fallbacks=[
                 MessageHandler(filters.Regex("^/cancel$"), self.cancel_conversation),
             ],
+            per_message=False,
         )
 
         # Conversation handler for adding private networks to tunnels
@@ -2721,6 +2723,7 @@ class CloudflareDNSBot:
             fallbacks=[
                 MessageHandler(filters.Regex("^/cancel$"), self.cancel_conversation),
             ],
+            per_message=False,
         )
 
         # Add handlers
@@ -2804,12 +2807,13 @@ class CloudflareDNSBot:
         )
 
         # Initialize database and run
-        asyncio.get_event_loop().run_until_complete(self.init_db())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.init_db())
         application.run_polling()
 
 
 # Configuration and main execution
-async def main() -> None:
+def main() -> None:
     """Main function to run the bot."""
     # Environment variables
     TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -2835,4 +2839,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
