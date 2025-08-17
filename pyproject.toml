@@ -1,0 +1,11 @@
+[project]
+name = "cloudflare-manager-telegram-bot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cloudflare>=4.3.1",
+    "python-telegram-bot[http2]>=22.3",
+    "sqlalchemy[asyncio]>=2.0.43",
+]
