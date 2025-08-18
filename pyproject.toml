@@ -10,3 +10,12 @@ dependencies = [
     "python-telegram-bot[http2]>=22.3",
     "sqlalchemy[asyncio]>=2.0.43",
 ]
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+respect-gitignore = true
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
