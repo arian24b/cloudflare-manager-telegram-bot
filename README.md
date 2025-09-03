@@ -1,4 +1,4 @@
-# Cloudflare Manager Telegram Bot
+# CloudflareManager
 
 A comprehensive multi-tenant Telegram bot for managing Cloudflare resources including DNS records and Cloudflare Tunnels.
 

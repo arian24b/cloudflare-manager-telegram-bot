@@ -1,0 +1,57 @@
+import logging
+from enum import IntEnum
+
+# Configure logging with better formatting
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+
+logger = logging.getLogger(__name__)
+
+
+class ConversationState(IntEnum):
+    """Conversation states for the bot."""
+
+    WAITING_TENANT_NAME = 0
+    WAITING_TENANT_DESCRIPTION = 1
+    WAITING_CF_TOKEN = 2
+    WAITING_TENANT_ADMIN = 3
+    WAITING_GROUP_NAME = 4
+    WAITING_GROUP_DESCRIPTION = 5
+    WAITING_DOMAIN_SELECTION = 6
+    WAITING_RECORD_TYPE = 7
+    WAITING_RECORD_NAME = 8
+    WAITING_RECORD_CONTENT = 9
+    WAITING_RECORD_TTL = 10
+    WAITING_RECORD_PRIORITY = 11
+    WAITING_SUPER_ADMIN_ID = 12
+    WAITING_TUNNEL_NAME = 13
+    WAITING_TUNNEL_SECRET = 14
+    WAITING_HOSTNAME_SUBDOMAIN = 15
+    WAITING_HOSTNAME_SERVICE = 16
+    WAITING_PRIVATE_NETWORK = 17
+
+
+# For backward compatibility
+(
+    WAITING_TENANT_NAME,
+    WAITING_TENANT_DESCRIPTION,
+    WAITING_CF_TOKEN,
+    WAITING_TENANT_ADMIN,
+    WAITING_GROUP_NAME,
+    WAITING_GROUP_DESCRIPTION,
+    WAITING_DOMAIN_SELECTION,
+    WAITING_RECORD_TYPE,
+    WAITING_RECORD_NAME,
+    WAITING_RECORD_CONTENT,
+    WAITING_RECORD_TTL,
+    WAITING_RECORD_PRIORITY,
+    WAITING_SUPER_ADMIN_ID,
+    WAITING_TUNNEL_NAME,
+    WAITING_TUNNEL_SECRET,
+    WAITING_HOSTNAME_SUBDOMAIN,
+    WAITING_HOSTNAME_SERVICE,
+    WAITING_PRIVATE_NETWORK,
+) = range(18)
